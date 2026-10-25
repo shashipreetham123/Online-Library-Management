@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 echo ===================================================
-echo   Online Library System Setup & Seeding Script
+echo   Online Library System Setup ^& Seeding Script
 echo ===================================================
 echo.
 
@@ -79,7 +79,7 @@ call node seed.js library 1234 library
 echo.
 
 echo ===================================================
-echo   Setup & Seeding Complete!
+echo   Setup ^& Seeding Complete!
 echo.
 echo   Created Users (Password: 1234):
 echo     - admin    (Role: admin)

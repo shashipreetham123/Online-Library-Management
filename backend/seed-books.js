@@ -31,12 +31,18 @@ async function seedBooks() {
 
         // Useful indexes for search and lookup performance
         await booksCollection.createIndex({ isbn: 1 }, { unique: false });
-        await booksCollection.createIndex({ title: "text", author: "text" });
+        try {
+            await booksCollection.dropIndex("title_text_author_text");
+        } catch (ignored) {
+            // Index doesn't exist yet or already dropped
+        }
+        await booksCollection.createIndex(
+            { title: "text", author: "text" },
+            { default_language: "english", language_override: "none" }
+        );
         await booksCollection.createIndex({ category: 1 });
         await booksCollection.createIndex({ rating: -1 });
 
-        // Optional: clean existing collection or insert without duplicates
-        // Use insertMany in chunks for memory safety and fast batch writing
         const CHUNK_SIZE = 1000;
         let insertedCount = 0;
 
@@ -50,6 +56,7 @@ async function seedBooks() {
         console.log(`✓ Successfully imported ${insertedCount} books into "${process.env.DB_NAME}.Books"!`);
     } catch (error) {
         console.error("Error inserting books:", error.message);
+        process.exitCode = 1;
     } finally {
         await client.close();
     }
