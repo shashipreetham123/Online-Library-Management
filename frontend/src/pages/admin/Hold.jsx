@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   PauseCircle,
   PlayCircle,
@@ -12,7 +12,6 @@ import {
   AlertCircle,
   Loader2,
   PackageCheck,
-  ShieldAlert,
 } from "lucide-react";
 import api from "../../services/api";
 import Modal from "../../components/Modal";
@@ -21,6 +20,7 @@ import "./Hold.css";
 
 export default function Hold() {
   useRequireRole("admin");
+  const navigate = useNavigate();
 
   // Books and Search State
   const [books, setBooks] = useState([]);

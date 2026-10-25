@@ -157,7 +157,7 @@ function Dashboard() {
 
         try {
             await api.get(`/api/${currentRole}/me`);
-        } catch (err) {
+        } catch {
             sessionStorage.removeItem("user_role");
             sessionStorage.removeItem("user_name");
             navigate("/login");
@@ -190,4 +190,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-export { getSidebarOptions };

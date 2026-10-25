@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   PlusCircle,
   BookOpen,
@@ -23,6 +23,7 @@ import "./AddBook.css";
 
 export default function AddBook() {
   useRequireRole("admin");
+  const navigate = useNavigate();
 
   // Form State
   // Required: title, author, publishedYear, totalCopies, rating, coverImage, availableCopies

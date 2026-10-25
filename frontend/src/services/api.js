@@ -61,7 +61,7 @@ async function request(endpoint, options = {}) {
   }
 
   // Parse JSON response if present
-  let responseData = null;
+  let responseData;
   const contentType = response.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
     try {

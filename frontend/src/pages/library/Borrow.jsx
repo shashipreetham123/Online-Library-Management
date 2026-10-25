@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
 import {
   BookmarkCheck,
   RotateCcw,
@@ -13,7 +12,6 @@ import {
   Loader2,
   X,
   KeyRound,
-  AlertTriangle,
 } from "lucide-react";
 import api from "../../services/api";
 import useRequireRole from "../../utils/useAuth";
@@ -27,6 +25,7 @@ export default function LibraryBorrow() {
   const [loading, setLoading] = useState(true);
   const [pageAlert, setPageAlert] = useState({ type: "", message: "" });
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentTime] = useState(() => Date.now());
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -152,7 +151,7 @@ export default function LibraryBorrow() {
 
   const isItemOverdue = (dueVal) => {
     if (!dueVal) return false;
-    return new Date(dueVal).getTime() < Date.now();
+    return new Date(dueVal).getTime() < currentTime;
   };
 
   // Filtered borrows list

@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
 import {
   CalendarClock,
   CheckCircle2,
@@ -13,7 +12,6 @@ import {
   Loader2,
   X,
   KeyRound,
-  RotateCcw,
 } from "lucide-react";
 import api from "../../services/api";
 import useRequireRole from "../../utils/useAuth";
@@ -27,6 +25,7 @@ export default function LibraryReserve() {
   const [loading, setLoading] = useState(true);
   const [pageAlert, setPageAlert] = useState({ type: "", message: "" });
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentTime] = useState(() => Date.now());
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -212,7 +211,7 @@ export default function LibraryReserve() {
 
   const isExpired = (toCollectVal) => {
     if (!toCollectVal) return false;
-    return new Date(toCollectVal).getTime() < Date.now();
+    return new Date(toCollectVal).getTime() < currentTime;
   };
 
   // Filtered reservations

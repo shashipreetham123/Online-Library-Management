@@ -65,7 +65,7 @@ function Browse() {
                 if (res?.categories) {
                     setCategories(Object.keys(res.categories));
                 }
-            } catch (err) {
+            } catch {
                 setCategories(["fiction", "science", "history", "biography", "technology"]);
             }
         }
@@ -166,6 +166,7 @@ function Browse() {
     // Initial load
     useEffect(() => {
         fetchBooks(1, {});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Handle applying filters from form

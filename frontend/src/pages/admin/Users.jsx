@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Users as UsersIcon,
   UserPlus,
@@ -23,6 +23,7 @@ import "./Users.css";
 
 export default function Users() {
   const { username: currentUsername } = useRequireRole("admin");
+  const navigate = useNavigate();
 
   const [usersList, setUsersList] = useState([]);
   const [loading, setLoading] = useState(true);

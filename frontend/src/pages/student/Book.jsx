@@ -1,12 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   BookOpen,
-  Calendar,
   Clock,
   Star,
-  Barcode,
   CheckCircle2,
   AlertCircle,
   Loader2,

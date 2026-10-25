@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Search,
   Save,
@@ -18,6 +19,8 @@ import "./EditBook.css";
 
 function EditBook() {
   useRequireRole("admin");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Search State
   const [searchInput, setSearchInput] = useState("");

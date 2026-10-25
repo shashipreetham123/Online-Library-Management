@@ -53,6 +53,7 @@ const getBookByIdHandler = async (req, res) => {
         const { id } = req.params
         const filters = (ObjectId.isValid(id) && id.length === 24) ? { _id: id } : { isbn: id }
         const book = await getBook(req.app.locals.db, filters)
+        console.log(book)
         if (!book) {
             return res.status(404).json({ message: "Book not found", data: null })
         }

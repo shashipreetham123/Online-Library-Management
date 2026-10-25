@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate, useOutletContext, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
-  Library as LibraryIcon,
   BookOpen,
   Calendar,
   Clock,
@@ -10,7 +9,6 @@ import {
   AlertCircle,
   CheckCircle2,
   Loader2,
-  BookmarkCheck,
   Hourglass,
 } from "lucide-react";
 import api from "../../services/api";
