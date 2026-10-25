@@ -43,6 +43,10 @@ async function seedBooks() {
         await booksCollection.createIndex({ category: 1 });
         await booksCollection.createIndex({ rating: -1 });
 
+        console.log("Clearing existing books from collection...");
+        await booksCollection.deleteMany({});
+        console.log("Books collection cleared.");
+
         const CHUNK_SIZE = 1000;
         let insertedCount = 0;
 
