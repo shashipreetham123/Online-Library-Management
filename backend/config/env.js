@@ -12,6 +12,6 @@ if (!process.env.SESSION_SECRET) {
     throw new Error("SESSION_SECRET is not defined")
 }
 
-if(!process.env.PORT) {
-    throw new Error("PORT is not Defined")
+if (!process.env.PORT) {
+    process.env.PORT = "10000";
 }

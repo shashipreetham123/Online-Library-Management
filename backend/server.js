@@ -13,9 +13,14 @@ const studentRoutes = require("./routes/student.routes")
 const libraryRoutes = require("./routes/library.routes")
 
 const app = express()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 10000
+const isProduction = process.env.NODE_ENV === "production"
 
-const ClientUrls = (process.env.CLIENT_URLS || "http://localhost:5173,http://localhost:5174").split(",")
+if (isProduction) {
+    app.set("trust proxy", 1)
+}
+
+const ClientUrls = (process.env.CLIENT_URLS || "http://localhost:5173,http://localhost:5174").split(",").map(url => url.trim())
 
 app.use(cors({ origin: ClientUrls, credentials: true }))
 app.use(express.json())
@@ -31,8 +36,8 @@ app.use(session({
     }),
     cookie: {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: isProduction,
+        sameSite: isProduction ? "none" : "lax",
         maxAge: 1000 * 60 * 60
     }
 }))
